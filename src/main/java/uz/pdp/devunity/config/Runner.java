@@ -35,14 +35,14 @@ public class Runner implements CommandLineRunner {
     @SneakyThrows
     @Override
     public void run(String... args) {
-        if (ddl.equals("create")) {
-            Role roleUser=Role.builder()
+        if (roleRepository.count() == 0) {
+            Role roleUser = Role.builder()
                     .roleEnum(ROLE_ENUM.ROLE_USER)
                     .build();
-            Role roleAdmin=Role.builder()
+            Role roleAdmin = Role.builder()
                     .roleEnum(ROLE_ENUM.ROLE_ADMIN)
                     .build();
-            Role roleSuperAdmin=Role.builder()
+            Role roleSuperAdmin = Role.builder()
                     .roleEnum(ROLE_ENUM.ROLE_SUPER_ADMIN)
                     .build();
 
@@ -53,7 +53,7 @@ public class Runner implements CommandLineRunner {
             savingClazzes();
 
 
-            Clazz clazz1=Clazz.builder()
+            Clazz clazz1 = Clazz.builder()
                     .name("11-02")
                     .build();
             clazzRepository.save(clazz1);
@@ -71,12 +71,12 @@ public class Runner implements CommandLineRunner {
             User user1 = User.builder()
                     .username("admin")
                     .password(passwordEncoder.encode("123"))
-                    .roles(List.of(roleUser,roleAdmin))
+                    .roles(List.of(roleUser, roleAdmin))
                     .build();
             User user2 = User.builder()
                     .username("super")
                     .password(passwordEncoder.encode("123"))
-                    .roles(List.of(roleUser,roleAdmin,roleSuperAdmin))
+                    .roles(List.of(roleUser, roleAdmin, roleSuperAdmin))
                     .bio(Bio.builder()
                             .firstname("Ja'farbek")
                             .lastname("Sayfiddinov")
@@ -91,7 +91,7 @@ public class Runner implements CommandLineRunner {
             User user3 = User.builder()
                     .username("super1")
                     .password(passwordEncoder.encode("123"))
-                    .roles(List.of(roleUser,roleAdmin,roleSuperAdmin))
+                    .roles(List.of(roleUser, roleAdmin, roleSuperAdmin))
                     .bio(Bio.builder()
                             .firstname("Abdulaziz")
                             .lastname("Najmiddinov")
@@ -109,15 +109,14 @@ public class Runner implements CommandLineRunner {
             userRepository.save(user3);
 
 
-
-            Admin admin=Admin.builder()
+            Admin admin = Admin.builder()
                     .adminRole(ADMIN_ROLE.DEVELOPER)
                     .roleDesc("Backend developer")
                     .user(user2)
                     .build();
 
 
-            Admin admin1=Admin.builder()
+            Admin admin1 = Admin.builder()
                     .adminRole(ADMIN_ROLE.DEVELOPER)
                     .roleDesc("Frontend developer")
                     .user(user3)
@@ -126,15 +125,14 @@ public class Runner implements CommandLineRunner {
             adminRepository.save(admin);
             adminRepository.save(admin1);
         }
-
     }
 
     private void savingClazzes() {
-        for (int i = 5; i <=11 ; i++) {
-            for (int j = 1; j <=5; j++) {
-                if (!(i==11 && j==2)){
+        for (int i = 5; i <= 11; i++) {
+            for (int j = 1; j <= 5; j++) {
+                if (!(i == 11 && j == 2)) {
                     Clazz clazz = Clazz.builder()
-                            .name(i + "-0"+j)
+                            .name(i + "-0" + j)
                             .build();
                     clazzRepository.save(clazz);
                 }
