@@ -138,7 +138,7 @@ public class EventUserService {
         leaderParticipant.setLeader(true);
         participationRepository.save(leaderParticipant);
         Iterator<UUID> iterator = teamMemberIds.iterator();
-        while (iterator.hasNext()) {
+        while (iterator.hasNext())  {
             UUID teamMemberId = iterator.next();
             User member = userRepository.findById(teamMemberId).orElseThrow(() -> new RuntimeException(teamMemberId + " not found"));
             Participation memberParticipation = new Participation();
