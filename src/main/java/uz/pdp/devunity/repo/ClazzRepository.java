@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public interface ClazzRepository extends JpaRepository<Clazz, UUID> {
     Clazz findByName(String name);
-    @Query(nativeQuery = true,value = "select name from clazz order by name")
+    @Query(nativeQuery = true,value = "select name from clazz order by id")
     List<String> findAllNames();
 
 
