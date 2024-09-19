@@ -11,7 +11,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry
                 .addMapping("/api/**")
-                .allowedOrigins("http://127.0.0.1:5500","https://dev-unity-frontend-v2.vercel.app")
+                .allowedOrigins("http://127.0.0.1:5500","https://dev-unity-frontend-v2.vercel.app","https://dev-unity-abdulaziz.vercel.app")
                 .allowedMethods("GET", "POST", "PUT", "DELETE","PATCH", "OPTIONS")
                 .allowedHeaders("Content-Type", "Authorization", "X-Requested-With"); // Specify required headers
     }
